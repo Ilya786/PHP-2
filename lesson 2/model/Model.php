@@ -2,8 +2,8 @@
 
 namespace app\model;
 use app\interfaces\IModel;
+use app\engine\Db;
 
-require '../interfaces/IModel.php';
 
 abstract class Model implements IModel
 {

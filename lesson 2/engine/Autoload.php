@@ -4,25 +4,13 @@
 
 class Autoload
 {
-    private $path = [
-      'model',
-      'engine',
-        'interfaces'
-];
 
     public function loadClass($className) {
-
-        foreach ($this->path as $path) {
-            $temp = explode('\\', $className); //  разделяем строку по символу "\"
-            $class = end($temp); // выбираем последний элемент массива
-            var_dump($class);
-            $fileName = "../{$path}/{$class}.php";
-            var_dump($fileName);
-            if (file_exists($fileName)) {
-                echo 'Подключен ' . $fileName . '<br/>';
-                require $fileName;
-                break;
-            }
+        $path  = ltrim($className, 'app\\');
+        $updatePath = str_replace('\\','/',$path);
+        $fileName = "../{$updatePath}.php";
+        if (file_exists($fileName)) {
+            require $fileName;
         }
 
     }
